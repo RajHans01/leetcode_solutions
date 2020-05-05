@@ -12,3 +12,15 @@ public:
       return 0;  
     }
 };
+===========================================
+It ('>>') means 'right shift' in a context where the left-hand operand is an integral type. For unsigned types, uvalue >> 1 is equivalent to dividing by two and truncating the value; it drops the least significant bit, moves every other bit down one place, and inserts a 0 in the most significant bit. For signed types and positive values, the behaviour is the same; if the value is negative, the behaviour is at best implementation-defined.
+
+If the left-hand operand is an input stream, then it is an input operation (but you can't input to a literal such as 1, but you could to a variable such as l).
+
+Similarly, '<<' means 'left shift' in a context where the left-hand operand is an integral type, and it means an output operation when the left-hand operand is an output stream.
+
+Of course, if the left-hand operand is a class, then the operation means whatever the class defines the operation to mean. The I/O streams are a specific special case of 'what the class defines the operation to mean'.
+
+Note that if the LH operand is an integer of N bits (when promoted if its type is shorter than int), then it is only valid to shift by a RH value that is between 0 and N-1; any larger or smaller shift yields undefined behaviour. Note, in particular, that shifting by N is undefined behaviour.
+
+The comment about classes and I/O streams do not apply to C, but where the operands are both integers, the behaviour in C is the same as in C++.
