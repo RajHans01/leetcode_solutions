@@ -1,0 +1,43 @@
+// slope method (y2-y1)*(x3-x2)==(y3-y2)*(x2-x1)
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& coordinates) { 
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        
+	double Y = coordinates[1][1] - coordinates[0][1];
+	double X = coordinates[1][0] - coordinates[0][0];     
+	for( int i=2; i < coordinates.size(); i++ ) {
+		auto p = coordinates[i];
+		if( X*(p[1] - coordinates[0][1]) != Y*(p[0] - coordinates[0][0]) )
+			return false;
+	}
+	return true;
+}
+        
+    };
+    //yes, idea is if cross product of two vectors are zero then it means vectors are either co-linear or one of them is a zero vector. 
+    since no duplicate points hence zero vector is impossible.
+    ==================================================================//using y=mx+c
+    class solution{
+    public:
+        bool checkStraightLine(vector<vector<int>>& coordinates) { 
+            ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        
+       double m =0;
+       double dy= (coordinates[1][1]-coordinates[1][0]);
+       double dx = (coordinates[1][0]-coordinates[0][0]);
+       m = dy/dx;
+       //find c = y - mx;
+       double c = abs(coordinates[0][1] - (m*coordinates[0][0]));
+       for(int i =2; i<coordinates.size();i++)
+       {
+       if(abs(coordinates[i][1]-(m*coordinates[i][0])) != c)
+            return false; }
+            return true;
+            } };
+=====================================================================================
+
